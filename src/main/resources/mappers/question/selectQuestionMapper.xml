@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bootproject.question.repository.SelectQuestionMapper">
+    <select id="selectQuestionList" resultType="qvo">
+        select q.qid , q.title ,q.mod_at , q.reward , u.nick_name as user_name
+        from question q left join `user` u on q.writer_id = u.uid 
+        where ${field} like `${query}`
+        limit #{page},10;
+    </select>
+    
+    <select id="selectOeQuestion" resultType="qvo">
+        select q.qid, q.title,q.content, q.mod_at, q.reward, u.nick_name as user_name
+        from question q left join `user` u on q.writer_id = u.uid
+        where q.qid = #{qid}
+    </select>
+</mapper>

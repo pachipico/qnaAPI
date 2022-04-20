@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bootproject.user.repository.UpdateUserMapper">
+
+    <insert id="insertUser" parameterType="uvo" >
+        insert into user (email, nick_name, location, pwd) values(#{email}, #{nickName}, #{location}, #{pwd})
+    </insert>
+
+    <insert id="insertAuthInit" parameterType="string">
+        insert into auth_user (email,auth ) values(#{email}, 'ROLE_USER')
+    </insert>
+    
+    <insert id="insertAuthManager" parameterType="string">
+        insert into auth_user (email,auth ) values(#{email}, 'ROLE_MANAGER')
+    </insert>
+    
+    <insert id="insertAuthAdmin" parameterType="string">
+        insert into auth_user (email,auth ) values(#{email}, 'ROLE_ADMIN')
+    </insert>
+    
+    <update id="updateUserNickname" parameterType="uvo">
+        update user set nick_name = #{nickName} where uid = #{uid}
+    </update>
+    
+    <update id="updateUserLocation" parameterType="uvo">
+        update user set location = #{location} where uid = #{uid}
+    </update>
+    
+    <update id="updateUserProfileImg" parameterType="uvo">
+        update user set profile_img = #{profileImg} where uid = #{uid}
+    </update>
+    
+    <update id="updateUserLastLogin" parameterType="uvo">
+        update user set last_login = now() where uid = #{uid}
+    </update>
+    
+    <update id="updateUserGrade" parameterType="uvo">
+        update user set grade = #{grade} where uid = #{uid}
+    </update>
+    
+    <update id="updateUserPoints" parameterType="uvo">
+        update user set points = points + #{points} where uid = #{uid}
+    </update>
+    
+    <delete id="deleteUser" parameterType="long">
+        delete from user where uid = #{uid}
+    </delete>
+</mapper>

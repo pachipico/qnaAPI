@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bootproject.question.repository.UpdateQuestionMapper">
+
+    <insert id="insertQuestion" parameterType="qvo">
+        insert into question (title, content, writer_id, reward, location) values(#{title}, #{content}, #{writerId}, #{reward}, #{location})
+    </insert>
+    
+    <update id="updateQuestion" parameterType="qvo">
+        update question set title = #{title}, content = #{content} , reward = #{reward}, mod_at=now() where qid = #{qid}
+    </update>
+    
+    <insert id="likeQuestion" parameterType="lqdto">
+        insert into q_like (uid, qid) values(#{uid}, #{qid})
+    </insert>
+    
+    <delete id="deleteQuestion" parameterType="long">
+        delete from question where qid = #{qid}
+    </delete>
+    
+</mapper>

@@ -2,7 +2,16 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0/EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<settings>
+	
+	   <setting name="mapUnderscoreToCamelCase" value="true"/>
+	
+	</settings>
     <typeAliases>
-        <!-- <typeAlias type="com.myweb.test.dto.TestDTO" alias="test"/> -->
+        <typeAlias type="com.bootproject.question.domain.Question" alias="qvo"/>
+        <typeAlias type="com.bootproject.question.domain.LikeQuestionDTO" alias="lqdto"/>
+        
+        <typeAlias type="com.bootproject.user.domain.User" alias="uvo"/>
+        <typeAlias type="com.bootproject.user.domain.UserLoginResponseDto" alias="uldto"/>
     </typeAliases>
 </configuration>

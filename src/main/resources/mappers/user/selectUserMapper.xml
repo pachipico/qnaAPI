@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bootproject.user.repository.SelectUserMapper">
+    <select id="loginUser" parameterType="string" resultType="uldto">
+        select u.uid , u.email , u.nick_name , u.location , u.points , u.profile_img , u.last_login , u.grade 
+        from `user` u 
+        where u.email = #{email} and pwd = #{pwd}
+    </select>
+    
+    <select id="getRoles" parameterType="string" resultType="string">
+        select auth from auth_user where email = #{email}
+    </select>
+    
+    <select id="selectUserList" resultType="uvo">
+        select uid, email, nick_name, location, points, profile_img, last_login, grade from user
+    </select>
+    
+    <select id="validNicknameChk" parameterType="string">
+        select uid from user where nick_name = #{nickName}
+    </select>
+    
+    <select id="validEmailChk" parameterType="string">
+        select uid from user where email = #{email}
+    </select>
+</mapper>
