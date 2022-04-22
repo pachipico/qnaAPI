@@ -1,8 +1,19 @@
 package com.bootproject.user.service;
 
-import com.bootproject.user.domain.User;
+import java.util.List;
 
-public interface UpdateService {
+import com.bootproject.user.domain.User;
+import com.bootproject.user.domain.UserLoginResponseDto;
+
+import lombok.extern.slf4j.Slf4j;
+
+
+public interface UserService {
+	UserLoginResponseDto login(String email, String pwd);
+	User findById(String email);
+	
+	List<String> getRoles(String email);
+	
 	int register(User user);
 	int modifyNickname(User user);
 	int modifyLocation(User user);

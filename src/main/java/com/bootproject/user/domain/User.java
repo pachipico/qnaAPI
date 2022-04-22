@@ -1,5 +1,9 @@
 package com.bootproject.user.domain;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -18,4 +22,12 @@ public class User {
 	private String profile_img;
 	private String lastLogin;
 	private int grade;
+	private String roles;
+
+	public List<String> getRoleList() {
+		if (this.roles.length() > 0) {
+			return Arrays.asList(roles.split(","));
+		}
+		return new ArrayList<>();
+	}
 }

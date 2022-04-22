@@ -5,8 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.bootproject.user.domain.User;
-import com.bootproject.user.repository.SelectUserMapper;
-import com.bootproject.user.repository.UpdateUserMapper;
+import com.bootproject.user.repository.UserMapper;
 
 
 
@@ -14,10 +13,8 @@ import com.bootproject.user.repository.UpdateUserMapper;
 public class RepositoryTest {
 
 	@Autowired
-	private UpdateUserMapper umapper;
-	
-	@Autowired
-	private SelectUserMapper smapper;
+	private UserMapper mapper;
+
 	
 	@Test
 	public void registerUserTest() {
@@ -26,6 +23,6 @@ public class RepositoryTest {
 		user.setNickName("123123nickname");
 		user.setLocation(1L);
 		user.setPwd("123");
-		umapper.insertUser(user);
+		mapper.insertUser(user);
 	}
 }

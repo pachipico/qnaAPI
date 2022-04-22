@@ -1,9 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.bootproject.user.repository.UpdateUserMapper">
-
-    <insert id="insertUser" parameterType="uvo" >
-        insert into user (email, nick_name, location, pwd) values(#{email}, #{nickName}, #{location}, #{pwd})
+<mapper namespace="com.bootproject.user.repository.UserMapper">
+    <select id="loginUser"  resultType="uldto">
+        select * from user where email = #{email} and pwd =#{pwd}
+    </select>
+    
+    <select id="getUserInfo" parameterType="string" resultType="uvo">
+        select * from user where email = #{email}
+    </select>
+    
+    <select id="getRoles" parameterType="string" resultType="string">
+        select auth from auth_user where email = #{email}
+    </select>
+    
+    <select id="selectUserList" resultType="uvo">
+        select uid, email, nick_name, location, points, profile_img, last_login, grade from user
+    </select>
+    
+    <select id="selectUserByEmail" parameterType="string" resultType="uvo">
+         select * from user where email = #{email}
+    </select>
+    
+    <select id="validNicknameChk" parameterType="string">
+        select uid from user where nick_name = #{nickName}
+    </select>
+    
+    <select id="validEmailChk" parameterType="string">
+        select uid from user where email = #{email}
+    </select>
+    
+    
+    
+     <insert id="insertUser" parameterType="uvo" >
+        insert into user (email, nick_name, location, pwd, roles) values(#{email}, #{nickName}, #{location}, #{pwd}, #{roles})
     </insert>
 
     <insert id="insertAuthInit" parameterType="string">
